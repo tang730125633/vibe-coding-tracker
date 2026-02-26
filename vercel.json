@@ -24,7 +24,6 @@
     }
   ],
   "env": {
-    "SECRET_KEY": "@secret_key",
-    "DATABASE_URL": "@database_url"
+    "SECRET_KEY": "psUQNwI_rz7sMroYry_YM7q3IzTrv83srdKHJQCJfBI"
   }
 }
