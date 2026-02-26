@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+@theme {
+  --color-student-50: #eff6ff;
+  --color-student-100: #dbeafe;
+  --color-student-200: #bfdbfe;
+  --color-student-300: #93c5fd;
+  --color-student-400: #60a5fa;
+  --color-student-500: #3b82f6;
+  --color-student-600: #2563eb;
+  --color-student-700: #1d4ed8;
+  --color-student-800: #1e40af;
+  --color-student-900: #1e3a8a;
+
+  --color-teacher-50: #faf5ff;
+  --color-teacher-100: #f3e8ff;
+  --color-teacher-200: #e9d5ff;
+  --color-teacher-300: #d8b4fe;
+  --color-teacher-400: #c084fc;
+  --color-teacher-500: #a855f7;
+  --color-teacher-600: #9333ea;
+  --color-teacher-700: #7e22ce;
+  --color-teacher-800: #6b21a8;
+  --color-teacher-900: #581c87;
+}
