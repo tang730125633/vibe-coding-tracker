@@ -1,18 +1,13 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "output/frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "output/frontend/dist"
-      }
-    },
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
+  "buildCommand": "cd output/frontend && npm install && npm run build",
+  "outputDirectory": "output/frontend/dist",
+  "installCommand": "cd output/backend && pip install -r requirements.txt",
+  "functions": {
+    "api/*.py": {
+      "runtime": "python3.9"
     }
-  ],
+  },
   "routes": [
     {
       "src": "/api/(.*)",
