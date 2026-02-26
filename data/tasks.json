@@ -1,0 +1,158 @@
+{
+  "project_name": "Vibe Coding 课程进度追踪器",
+  "project_root": "/Users/tang/projects/vibe-coding-tracker",
+  "created_at": "2026-02-26T00:00:00Z",
+
+  "tasks": [
+    {
+      "task_id": "TASK-001",
+      "title": "数据库设计和模型",
+      "description": "创建 SQLite 数据库，定义 users, courses, progress, homework, materials 表，使用 SQLAlchemy ORM",
+      "agent": "backend-dev",
+      "priority": "P0",
+      "dependencies": [],
+      "status": "pending",
+      "output_dir": "output/backend/"
+    },
+    {
+      "task_id": "TASK-002",
+      "title": "认证系统",
+      "description": "实现 JWT 登录认证，POST /api/auth/login 和 GET /api/auth/me，权限验证中间件",
+      "agent": "backend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-001"],
+      "status": "pending",
+      "output_dir": "output/backend/"
+    },
+    {
+      "task_id": "TASK-003",
+      "title": "学员端 API",
+      "description": "实现 GET /api/courses, GET /api/progress/me, POST /api/homework, GET /api/homework/me, GET /api/materials",
+      "agent": "backend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-002"],
+      "status": "pending",
+      "output_dir": "output/backend/"
+    },
+    {
+      "task_id": "TASK-004",
+      "title": "老师端 API",
+      "description": "实现 GET/POST/PUT/DELETE /api/students, PUT /api/homework/:id, POST /api/materials, GET /api/stats",
+      "agent": "backend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-002"],
+      "status": "pending",
+      "output_dir": "output/backend/"
+    },
+    {
+      "task_id": "TASK-005",
+      "title": "初始化数据",
+      "description": "创建数据库初始化脚本，插入 10 周课程数据和默认老师账号",
+      "agent": "backend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-001"],
+      "status": "pending",
+      "output_dir": "output/backend/"
+    },
+    {
+      "task_id": "TASK-006",
+      "title": "前端项目搭建",
+      "description": "使用 Vite 创建 React 项目，配置 Tailwind CSS, React Router, Axios",
+      "agent": "frontend-dev",
+      "priority": "P0",
+      "dependencies": [],
+      "status": "pending",
+      "output_dir": "output/frontend/"
+    },
+    {
+      "task_id": "TASK-007",
+      "title": "登录页面",
+      "description": "创建登录页面，表单验证，调用 /api/auth/login，保存 JWT token",
+      "agent": "frontend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-006"],
+      "status": "pending",
+      "output_dir": "output/frontend/"
+    },
+    {
+      "task_id": "TASK-008",
+      "title": "学员端页面",
+      "description": "创建课程大纲页、我的进度页、作业提交页、作业列表页、资料下载页",
+      "agent": "frontend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-007"],
+      "status": "pending",
+      "output_dir": "output/frontend/"
+    },
+    {
+      "task_id": "TASK-009",
+      "title": "老师端页面",
+      "description": "创建学员管理页、作业批改页、资料上传页、数据统计页",
+      "agent": "frontend-dev",
+      "priority": "P0",
+      "dependencies": ["TASK-007"],
+      "status": "pending",
+      "output_dir": "output/frontend/"
+    },
+    {
+      "task_id": "TASK-010",
+      "title": "通用组件",
+      "description": "创建导航栏、侧边栏、进度条、文件上传、卡片等通用组件",
+      "agent": "frontend-dev",
+      "priority": "P1",
+      "dependencies": ["TASK-006"],
+      "status": "pending",
+      "output_dir": "output/frontend/"
+    },
+    {
+      "task_id": "TASK-011",
+      "title": "后端 API 测试",
+      "description": "编写 pytest 测试用例，测试所有 API 端点、认证、权限",
+      "agent": "tester-agent",
+      "priority": "P0",
+      "dependencies": ["TASK-003", "TASK-004"],
+      "status": "pending",
+      "output_dir": "output/tests/"
+    },
+    {
+      "task_id": "TASK-012",
+      "title": "前端功能测试",
+      "description": "测试页面跳转、表单提交、文件上传、数据展示",
+      "agent": "tester-agent",
+      "priority": "P1",
+      "dependencies": ["TASK-008", "TASK-009"],
+      "status": "pending",
+      "output_dir": "output/tests/"
+    },
+    {
+      "task_id": "TASK-013",
+      "title": "环境配置和依赖",
+      "description": "创建 requirements.txt, package.json, .env.example, 安装脚本",
+      "agent": "devops-agent",
+      "priority": "P0",
+      "dependencies": ["TASK-005", "TASK-010"],
+      "status": "pending",
+      "output_dir": "output/"
+    },
+    {
+      "task_id": "TASK-014",
+      "title": "Vercel 部署配置",
+      "description": "创建 vercel.json, 配置前端和后端 serverless 部署，编写部署文档",
+      "agent": "devops-agent",
+      "priority": "P0",
+      "dependencies": ["TASK-013"],
+      "status": "pending",
+      "output_dir": "output/"
+    },
+    {
+      "task_id": "TASK-015",
+      "title": "启动脚本和文档",
+      "description": "创建本地启动脚本（start.sh），编写 README.md 使用文档",
+      "agent": "devops-agent",
+      "priority": "P0",
+      "dependencies": ["TASK-014"],
+      "status": "pending",
+      "output_dir": "docs/"
+    }
+  ]
+}

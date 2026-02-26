@@ -1,0 +1,215 @@
+{
+  "project_name": "Vibe Coding 课程进度追踪器",
+  "project_root": "/Users/tang/projects/vibe-coding-tracker",
+  "version": "1.0.0",
+  "created_at": "2026-02-26T00:00:00Z",
+
+  "overview": {
+    "description": "为 Vibe Coding 课程打造的学员进度管理系统，支持学员查看进度、提交作业，老师批改作业、管理学员",
+    "target_users": ["Vibe Coding 学员（27人）", "Tang（老师）"],
+    "business_value": "提升课程体验，降低退款率，减少重复答疑"
+  },
+
+  "tech_stack": {
+    "frontend": {
+      "framework": "React 18 + Vite",
+      "styling": "Tailwind CSS",
+      "routing": "React Router v6",
+      "state": "React Hooks",
+      "http": "Axios"
+    },
+    "backend": {
+      "framework": "FastAPI",
+      "database": "SQLite",
+      "auth": "JWT",
+      "file_upload": "FastAPI UploadFile"
+    },
+    "deployment": {
+      "frontend": "Vercel",
+      "backend": "Railway or Vercel Serverless",
+      "database": "SQLite file"
+    }
+  },
+
+  "features": {
+    "student_features": [
+      {
+        "id": "F001",
+        "name": "登录系统",
+        "description": "学员使用账号密码登录",
+        "priority": "P0"
+      },
+      {
+        "id": "F002",
+        "name": "课程大纲",
+        "description": "展示 10 周完整课程内容，每周标题、学习目标、技术栈",
+        "priority": "P0"
+      },
+      {
+        "id": "F003",
+        "name": "我的进度",
+        "description": "显示已完成/进行中/未开始的周次，进度百分比",
+        "priority": "P0"
+      },
+      {
+        "id": "F004",
+        "name": "作业提交",
+        "description": "上传作业（支持文件/链接/文本描述）",
+        "priority": "P0"
+      },
+      {
+        "id": "F005",
+        "name": "作业状态",
+        "description": "查看批改状态（待批改/已批改/需修改）和老师评语",
+        "priority": "P0"
+      },
+      {
+        "id": "F006",
+        "name": "资料下载",
+        "description": "下载每周课程资料、代码示例",
+        "priority": "P1"
+      },
+      {
+        "id": "F007",
+        "name": "上课提醒",
+        "description": "显示下次上课时间（每周四）和倒计时",
+        "priority": "P1"
+      }
+    ],
+    "teacher_features": [
+      {
+        "id": "F101",
+        "name": "学员管理",
+        "description": "添加/删除/编辑学员账号",
+        "priority": "P0"
+      },
+      {
+        "id": "F102",
+        "name": "进度管理",
+        "description": "批量更新学员进度（标记某周已完成）",
+        "priority": "P0"
+      },
+      {
+        "id": "F103",
+        "name": "作业批改",
+        "description": "查看学员作业、添加评语、标记完成/需修改",
+        "priority": "P0"
+      },
+      {
+        "id": "F104",
+        "name": "资料上传",
+        "description": "上传每周课程资料（PDF/ZIP/代码文件）",
+        "priority": "P1"
+      },
+      {
+        "id": "F105",
+        "name": "数据统计",
+        "description": "查看整体学习进度、作业提交率、完成率",
+        "priority": "P1"
+      }
+    ]
+  },
+
+  "data_models": {
+    "users": {
+      "id": "integer primary key",
+      "username": "string unique",
+      "password": "string hashed",
+      "role": "enum: student/teacher",
+      "name": "string",
+      "email": "string",
+      "created_at": "datetime"
+    },
+    "courses": {
+      "id": "integer primary key",
+      "week_number": "integer 1-10",
+      "title": "string",
+      "description": "text",
+      "tech_stack": "string",
+      "learning_goals": "text",
+      "class_date": "date"
+    },
+    "progress": {
+      "id": "integer primary key",
+      "student_id": "foreign key users",
+      "course_id": "foreign key courses",
+      "status": "enum: not_started/in_progress/completed",
+      "completed_at": "datetime"
+    },
+    "homework": {
+      "id": "integer primary key",
+      "student_id": "foreign key users",
+      "course_id": "foreign key courses",
+      "content": "text",
+      "file_url": "string",
+      "link_url": "string",
+      "status": "enum: pending/approved/needs_revision",
+      "teacher_comment": "text",
+      "submitted_at": "datetime",
+      "reviewed_at": "datetime"
+    },
+    "materials": {
+      "id": "integer primary key",
+      "course_id": "foreign key courses",
+      "title": "string",
+      "file_url": "string",
+      "file_type": "string",
+      "uploaded_at": "datetime"
+    }
+  },
+
+  "api_endpoints": {
+    "auth": [
+      "POST /api/auth/login - 登录",
+      "GET /api/auth/me - 获取当前用户信息"
+    ],
+    "courses": [
+      "GET /api/courses - 获取所有课程",
+      "GET /api/courses/:id - 获取单个课程详情"
+    ],
+    "progress": [
+      "GET /api/progress/me - 获取我的进度",
+      "PUT /api/progress/:id - 更新进度（老师）"
+    ],
+    "homework": [
+      "GET /api/homework/me - 获取我的作业列表",
+      "POST /api/homework - 提交作业",
+      "GET /api/homework/all - 获取所有作业（老师）",
+      "PUT /api/homework/:id - 批改作业（老师）"
+    ],
+    "students": [
+      "GET /api/students - 获取学员列表（老师）",
+      "POST /api/students - 添加学员（老师）",
+      "PUT /api/students/:id - 编辑学员（老师）",
+      "DELETE /api/students/:id - 删除学员（老师）"
+    ],
+    "materials": [
+      "GET /api/materials - 获取资料列表",
+      "POST /api/materials - 上传资料（老师）"
+    ],
+    "stats": [
+      "GET /api/stats - 获取统计数据（老师）"
+    ]
+  },
+
+  "initial_data": {
+    "courses": [
+      {"week": 1, "title": "AI Studio 基础功能", "tech": "Gemini AI Studio", "date": "2026-01-09"},
+      {"week": 2, "title": "上线部署", "tech": "Vercel + Railway", "date": "2026-01-16"},
+      {"week": 3, "title": "API 和上线部署", "tech": "API 集成", "date": "2026-01-23"},
+      {"week": 4, "title": "Cursor + Cline", "tech": "AI 辅助编程", "date": "2026-01-30"},
+      {"week": 5, "title": "实战项目开发", "tech": "完整应用", "date": "2026-02-06"},
+      {"week": 6, "title": "高级功能实现", "tech": "进阶技术", "date": "2026-02-13"},
+      {"week": 7, "title": "性能优化", "tech": "优化技巧", "date": "2026-02-20"},
+      {"week": 8, "title": "用户体验提升", "tech": "UX/UI", "date": "2026-02-27"},
+      {"week": 9, "title": "项目打磨", "tech": "细节完善", "date": "2026-03-06"},
+      {"week": 10, "title": "项目展示", "tech": "作品发布", "date": "2026-03-13"}
+    ],
+    "default_teacher": {
+      "username": "tang",
+      "password": "tang123",
+      "name": "Tang",
+      "email": "tang@vibecoding.com"
+    }
+  }
+}

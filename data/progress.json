@@ -1,0 +1,206 @@
+{
+  "project_name": "Vibe Coding 课程进度追踪器",
+  "project_root": "/Users/tang/projects/vibe-coding-tracker",
+  "created_at": "2026-02-26T00:00:00Z",
+  "overall_progress": 0,
+  "current_phase": "phase1_dev",
+  "phases": {
+    "phase1_dev": "in_progress",
+    "phase2_test": "pending",
+    "phase3_deploy": "pending"
+  },
+  "agent_reports": [
+    {
+      "agent": "backend-dev",
+      "status": "completed",
+      "message": "后端开发完成，已实现 15 个 API 端点",
+      "completed_tasks": ["TASK-001", "TASK-002", "TASK-003", "TASK-004", "TASK-005"],
+      "output_files": [
+        "output/backend/main.py",
+        "output/backend/database.py",
+        "output/backend/models.py",
+        "output/backend/schemas.py",
+        "output/backend/auth.py",
+        "output/backend/routes/auth.py",
+        "output/backend/routes/student.py",
+        "output/backend/routes/teacher.py",
+        "output/backend/init_db.py",
+        "output/backend/requirements.txt"
+      ],
+      "api_endpoints": [
+        {"method": "POST", "path": "/api/auth/login", "description": "登录"},
+        {"method": "GET", "path": "/api/auth/me", "description": "获取当前用户信息"},
+        {"method": "GET", "path": "/api/courses", "description": "获取所有课程"},
+        {"method": "GET", "path": "/api/progress/me", "description": "获取我的进度"},
+        {"method": "POST", "path": "/api/homework", "description": "提交作业"},
+        {"method": "GET", "path": "/api/homework/me", "description": "获取我的作业列表"},
+        {"method": "GET", "path": "/api/materials", "description": "获取资料列表"},
+        {"method": "GET", "path": "/api/students", "description": "获取学员列表（老师）"},
+        {"method": "POST", "path": "/api/students", "description": "添加学员（老师）"},
+        {"method": "PUT", "path": "/api/students/:id", "description": "编辑学员（老师）"},
+        {"method": "DELETE", "path": "/api/students/:id", "description": "删除学员（老师）"},
+        {"method": "GET", "path": "/api/homework/all", "description": "获取所有作业（老师）"},
+        {"method": "PUT", "path": "/api/homework/:id", "description": "批改作业（老师）"},
+        {"method": "POST", "path": "/api/materials", "description": "上传资料（老师）"},
+        {"method": "GET", "path": "/api/stats", "description": "获取统计数据（老师）"}
+      ],
+      "updated_at": "2026-02-26T08:30:00Z"
+    },
+    {
+      "agent": "frontend-dev",
+      "status": "completed",
+      "message": "前端开发完成，已实现所有页面和组件",
+      "completed_tasks": ["TASK-006", "TASK-007", "TASK-008", "TASK-009", "TASK-010"],
+      "output_files": [
+        "output/frontend/package.json",
+        "output/frontend/tailwind.config.js",
+        "output/frontend/postcss.config.js",
+        "output/frontend/.env.example",
+        "output/frontend/README.md",
+        "output/frontend/src/index.css",
+        "output/frontend/src/App.jsx",
+        "output/frontend/src/api/axios.js",
+        "output/frontend/src/api/index.js",
+        "output/frontend/src/utils/helpers.js",
+        "output/frontend/src/components/ProgressBar.jsx",
+        "output/frontend/src/components/CourseCard.jsx",
+        "output/frontend/src/components/FileUpload.jsx",
+        "output/frontend/src/components/Navbar.jsx",
+        "output/frontend/src/components/Sidebar.jsx",
+        "output/frontend/src/components/Layout.jsx",
+        "output/frontend/src/components/ProtectedRoute.jsx",
+        "output/frontend/src/pages/Login.jsx",
+        "output/frontend/src/pages/student/Dashboard.jsx",
+        "output/frontend/src/pages/student/Progress.jsx",
+        "output/frontend/src/pages/student/Homework.jsx",
+        "output/frontend/src/pages/student/Materials.jsx",
+        "output/frontend/src/pages/teacher/Students.jsx",
+        "output/frontend/src/pages/teacher/HomeworkReview.jsx",
+        "output/frontend/src/pages/teacher/Materials.jsx",
+        "output/frontend/src/pages/teacher/Stats.jsx"
+      ],
+      "pages": [
+        "登录页",
+        "学员端-课程大纲",
+        "学员端-我的进度",
+        "学员端-作业提交",
+        "学员端-资料下载",
+        "老师端-学员管理",
+        "老师端-作业批改",
+        "老师端-资料上传",
+        "老师端-数据统计"
+      ],
+      "api_base": "http://localhost:8000",
+      "updated_at": "2026-02-26T09:00:00Z"
+    },
+    {
+      "agent": "tester-agent",
+      "status": "completed",
+      "message": "测试完成：已编写 29 个后端 API 测试用例和完整的前端测试清单",
+      "completed_tasks": ["TASK-011", "TASK-012"],
+      "output_files": [
+        "output/tests/test_api.py",
+        "output/tests/conftest.py",
+        "output/tests/requirements-test.txt",
+        "output/tests/test_frontend.md",
+        "output/tests/bugs.md",
+        "output/tests/run_tests.sh",
+        "output/tests/README.md"
+      ],
+      "test_results": {
+        "backend_tests": {
+          "total": 29,
+          "categories": {
+            "auth": 6,
+            "student_api": 8,
+            "teacher_api": 13,
+            "health_check": 2
+          },
+          "coverage": [
+            "认证测试：登录成功/失败、token 验证",
+            "学员端 API：课程、进度、作业、资料",
+            "老师端 API：学员管理、作业批改、资料上传、统计",
+            "权限控制：学员不能访问老师端 API",
+            "错误处理：404、401、403、400"
+          ]
+        },
+        "frontend_tests": {
+          "type": "manual",
+          "checklist_items": 50,
+          "categories": [
+            "登录流程测试",
+            "学员端页面测试（6 个页面）",
+            "老师端页面测试（5 个页面）",
+            "权限控制测试",
+            "响应式设计测试",
+            "错误处理测试",
+            "性能测试"
+          ]
+        }
+      },
+      "test_commands": {
+        "run_all": "./output/tests/run_tests.sh",
+        "run_pytest": "pytest output/tests/test_api.py -v",
+        "coverage": "pytest output/tests/test_api.py --cov=output/backend --cov-report=html"
+      },
+      "notes": [
+        "所有 API 端点都有对应的测试用例",
+        "测试覆盖正常流程、边界情况、错误处理",
+        "包含权限控制测试（学员不能访问老师端）",
+        "前端测试为手动测试清单，需要人工执行",
+        "已创建测试运行脚本，一键运行所有测试"
+      ],
+      "updated_at": "2026-02-26T10:00:00Z"
+    },
+    {
+      "agent": "devops-agent",
+      "status": "completed",
+      "message": "部署配置完成，项目已准备好部署到 Vercel",
+      "completed_tasks": ["TASK-013", "TASK-014", "TASK-015"],
+      "output_files": [
+        ".env.example",
+        ".gitignore",
+        "vercel.json",
+        "api/index.py",
+        "start.sh",
+        "stop.sh",
+        "deploy.sh",
+        "README.md",
+        "DEPLOY.md",
+        "scripts/setup.sh",
+        "scripts/status.sh",
+        "scripts/reset-db.sh",
+        "output/frontend/.env.example (updated)",
+        "output/frontend/src/api/axios.js (updated)"
+      ],
+      "deployment_ready": true,
+      "deployment_steps": [
+        "1. 推送代码到 GitHub: ./deploy.sh",
+        "2. 访问 https://vercel.com 并登录",
+        "3. 导入 GitHub 仓库",
+        "4. 配置环境变量（SECRET_KEY, DATABASE_URL）",
+        "5. 点击 Deploy",
+        "6. 详细步骤见 DEPLOY.md"
+      ],
+      "local_commands": {
+        "setup": "./scripts/setup.sh - 初始化环境",
+        "start": "./start.sh - 启动所有服务",
+        "stop": "./stop.sh - 停止所有服务",
+        "status": "./scripts/status.sh - 查看服务状态",
+        "reset_db": "./scripts/reset-db.sh - 重置数据库"
+      },
+      "services": {
+        "backend": {
+          "url": "http://localhost:8000",
+          "docs": "http://localhost:8000/docs",
+          "health": "http://localhost:8000/health"
+        },
+        "frontend": {
+          "url": "http://localhost:5173",
+          "build": "cd output/frontend && npm run build"
+        }
+      },
+      "updated_at": "2026-02-26T20:20:55Z"
+    }
+  ]
+}

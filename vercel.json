@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "output/frontend/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "output/frontend/dist"
+      }
+    },
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.py"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/output/frontend/dist/$1"
+    }
+  ],
+  "env": {
+    "SECRET_KEY": "@secret_key",
+    "DATABASE_URL": "@database_url"
+  }
+}
